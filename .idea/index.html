@@ -34,11 +34,11 @@
         </div>
         <div class="col-md-6">
             <label for="inputNIP" class="form-label">NIP</label>
-            <input type="number" class="form-control" id="inputNIP" required>
+            <input type="text" class="form-control" pattern="\d{10}" title="NIP musi składać się z 10 cyfr" id="inputNIP" required>
         </div>
         <div class="col-6">
-            <label for="inputCity" class="form-label">Miasto</label>
-            <input type="text" class="form-control" id="inputCity" placeholder="Krakow" required>
+            <label for="inputMiasto" class="form-label">Miasto</label>
+            <input type="text" class="form-control" id="inputMiasto" placeholder="Krakow" required>
         </div>
         <div class="col-6">
             <label for="inputUlica" class="form-label">Ulica</label>
@@ -46,7 +46,7 @@
         </div>
         <div class="col-md-6">
             <label for="inputNumber" class="form-label">Numer Domu</label>
-            <input type="number" class="form-control" id="inputNumber" required>
+            <input type="text" class="form-control" id="inputNumber" required>
         </div>
         <div class="col-md-6">
             <label for="inputNumberM" class="form-label">Numer Mieszkania</label>
@@ -54,14 +54,14 @@
         </div>
         <div class="col-md-6">
             <label for="inputCode" class="form-label">Kod Pocztowy</label>
-            <input type="text" class="form-control" id="inputCode" required>
+            <input type="text" class="form-control" pattern="\d{2}-\d{3}" title="Kod pocztowy musi mieć format xx-xxx" id="inputKod" required>
         </div>
         <div class="col-md-12">
             <label for="floatingTextarea">Uwagi</label>
-            <textarea class="form-control" placeholder="Zostaw uwagi tutaj" id="floatingTextarea"></textarea>
+            <textarea class="form-control" placeholder="Zostaw uwagi tutaj" id="inputUwagi"></textarea>
         </div>
         <div class="form-floating">
-            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" required>
+            <select class="form-select" id="inputBranza" aria-label="Floating label select example" required>
                 <option selected>Wybierz branżę</option>
                 <option value="1">Finanse</option>
                 <option value="2">Informatyka</option>
@@ -71,14 +71,17 @@
         </div>
         <div class="col-12">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <input class="form-check-input" type="checkbox" id="inputCheck">
                 <label class="form-check-label" for="gridCheck">
-                    Check me out
+                    Aktywny
                 </label>
             </div>
         </div>
-        <div class="col-12">
-            <button type="submit" value="Submit" class="btn btn-primary">Sign in</button>
+        <div class="col-6">
+            <button type="submit" value="Submit" class="btn btn-primary">Zapisz</button>
+        </div>
+        <div>
+            <button type="button" onclick="fillForm()">Wstaw dane i zablokuj</button>
         </div>
     </form>
 </section>
@@ -94,23 +97,52 @@
         event.preventDefault()
         const name=document.getElementById("inputName").value
         const NIP=document.getElementById("inputNIP").value
-        const city=document.getElementById("inputCity").value
+        const miasto=document.getElementById("inputMiasto").value
         const ulica=document.getElementById("inputUlica").value
-        const numer=document.getElementById("inputNumber").value
-        const numerM=document.getElementById("inputNumberM").value
-        const kod=document.getElementById("inputCode").value
+        const number=document.getElementById("inputNumber").value
+        const numberM=document.getElementById("inputNumberM").value || null
+        const kod=document.getElementById("inputKod").value
+        const uwagi=document.getElementById('inputUwagi').value || null
+        const branza=document.getElementById('inputBranza').value
+        const check=document.getElementById('inputCheck').checked
 
         const formData={
             name:name,
             NIP:NIP,
-            city:city,
+            miasto:miasto,
             ulica:ulica,
-            numer:numer,
-            numerM:numerM,
+            number:number,
+            numberM:numberM,
             kod:kod,
+            uwagi:uwagi,
+            branza:branza,
+            check:check,
         }
         console.log(formData);
         }
+    function fillForm() {
+        document.getElementById("inputName").value = "Firma ABCD";
+        document.getElementById('inputNIP').value = "1234567890";
+        document.getElementById('inputMiasto').value = "Warszawa";
+        document.getElementById('inputUlica').value = "Długa";
+        document.getElementById('inputNumber').value = "10";
+        document.getElementById('inputNumberM').value = "5";
+        document.getElementById('inputKod').value = "00-001";
+        document.getElementById('inputUwagi').value = "Brak uwag";
+        document.getElementById('inputBranza').value = "1";
+        document.getElementById('inputCheck').checked = true;
+
+        document.getElementById('inputName').disabled = true;
+        document.getElementById('inputNIP').disabled = true;
+        document.getElementById('inputMiasto').disabled = true;
+        document.getElementById('inputUlica').disabled = true;
+        document.getElementById('inputNumber').disabled = true;
+        document.getElementById('inputNumberM').disabled = true;
+        document.getElementById('inputKod').disabled = true;
+        document.getElementById('inputUwagi').disabled = true;
+        document.getElementById('inputBranza').disabled = true;
+        document.getElementById('inputCheck').disabled = true;
+    }
 
 </script>
 </body>
