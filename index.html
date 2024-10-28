@@ -27,7 +27,7 @@
 
 <section>
     <h3>Formularz</h3>
-    <form id ="Form" onsubmit="getElements(event)" class="row g-3">
+    <form id ="Form" onsubmit="getElements(event)" class="row g-4">
         <div class="col-md-6">
             <label for="inputName" class="form-label">Nazwa Firmy</label>
             <input type="text" class="form-control" id="inputName" required>
@@ -77,13 +77,27 @@
                 </label>
             </div>
         </div>
-        <div class="col-6">
-            <button type="submit" value="Submit" class="btn btn-primary">Zapisz</button>
+        <div>
+            <button type="submit" onclick="showList()" value="Submit" class="btn btn-primary">Zapisz</button>
         </div>
         <div>
             <button type="button" onclick="fillForm()"class="btn btn-secondary">Wstaw dane i zablokuj</button>
         </div>
+        <div >
+            <button type="submit" onclick="showList()" class="btn btn-primary">Add client</button>
+        </div>
     </form>
+</section>
+<section>
+    <div class="clinet-list" id="login-form">
+        <h1>Lista Klientów</h1>
+        <ul class="list-group"></ul>
+          <div>
+            <button type="submit" onclick="showForm()" class="btn btn-primary">Show Form</button>
+        </div>
+    </div>
+
+
 </section>
 
 <footer>
@@ -91,7 +105,6 @@
 </footer>
 
 <script>
-
 
     function getElements(event){
         event.preventDefault()
@@ -119,6 +132,10 @@
             check:check,
         }
         console.log(formData);
+        customerList.push(formData);
+        console.log(customerList)
+        fillForm({})
+        showList();
         }
     function fillForm() {
         document.getElementById("inputName").value = "Firma ABCD";
@@ -143,6 +160,22 @@
         document.getElementById('inputBranza').disabled = true;
         document.getElementById('inputCheck').disabled = true;
     }
+    function showList(){
+        document.getElementById('login-form').style.display='block'
+        document.getElementById('Form').style.display='none'
+        
+        let ul= document.getElementById("login-form");
+        ul.innerHTML += `<li>${customerList[0].name}</li>`
+
+    }
+    function showForm(){
+        document.getElementById('Form').style.display='block'
+        document.getElementById('login-form').style.display='none'
+    }
+
+    var customerList=[];
+
+
 
 </script>
 </body>
