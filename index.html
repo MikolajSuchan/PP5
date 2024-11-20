@@ -104,10 +104,11 @@
 
 </footer>
 
-<script>
+<script src="Customer.js">
 
     function getElements(event){
         event.preventDefault()
+        var customer=new Customer()
         const name=document.getElementById("inputName").value
         const NIP=document.getElementById("inputNIP").value
         const miasto=document.getElementById("inputMiasto").value
@@ -119,9 +120,9 @@
         const branza=document.getElementById('inputBranza').value
         const check=document.getElementById('inputCheck').checked
 
-        const formData={
+        customer={
             name:name,
-            NIP:NIP,
+            nip:NIP,
             miasto:miasto,
             ulica:ulica,
             number:number,
@@ -131,10 +132,18 @@
             branza:branza,
             check:check,
         }
+
+        console.log(customer)
+        conslole.log(supplier)
+
+
+
+
+
         console.log(formData);
         customerList.push(formData);
         console.log(customerList)
-        fillForm({})
+        fillForm()
         showList();
         }
     function fillForm() {
