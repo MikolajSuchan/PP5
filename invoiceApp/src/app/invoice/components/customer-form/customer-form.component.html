@@ -1,9 +1,10 @@
-<form id="client-form" onsubmit="return save(event)" class="row g-4">
+{{customer|json}}
+<form id="client-form"  class="row g-4" (ngSubmit)="saveData()">
     <input type="hidden" id="editIndex" value=""> <!-- Pole ukryte do przechowywania indeksu edytowanego klienta -->
     <!-- Nazwa firmy -->
     <div class="col-md-6">
         <label for="inputName" class="form-label">Nazwa Firmy</label>
-        <input type="text" class="form-control" id="inputName" required>
+        <input type="text" class="form-control" id="inputName" required name="name" [(ngModel)]="customer.name">
     </div>
     <!-- NIP -->
     <div class="col-md-6">
