@@ -16,7 +16,7 @@ export class Customer{
         return this.kod+" "+this.miasto+" ul."+this.ulica+" nr."+this.number+" nr.mieszkania "+this.numberM
     };
     getCustomerInfo():string {
-        return `${this.name} (${this.nip})`;
+        return `${this.name}${this.nip}`;
     }
 
     
