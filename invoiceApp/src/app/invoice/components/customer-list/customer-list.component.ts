@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { Router } from '@angular/router';
 import { Customer } from 'app/invoice/models/customer';
@@ -9,7 +9,7 @@ import { Customer } from 'app/invoice/models/customer';
   templateUrl: './customer-list.component.html',
   styleUrl: './customer-list.component.scss'
 })
-export class CustomerListComponent {
+export class CustomerListComponent implements OnInit,OnDestroy {
 
   customerList: Customer[];
 
@@ -23,6 +23,18 @@ export class CustomerListComponent {
 
   redirectToForm(){
     this.router.navigate(['invoice/customer-form'])
+  }
+
+  ngOnInit(){
+    this.customerList
+  }
+
+  ngOnDestroy(){
+    console.log('Zamykam komponent')
+  }
+
+  deleteCustomer(customer:Customer){
+    console.log('Rodzic otrzymał',customer)
   }
 
 }

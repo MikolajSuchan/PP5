@@ -1,6 +1,7 @@
 <app-customer-list-element
 *ngFor="let customer of customerList"
-[customer]="customer">
+[customer]="customer"
+(deleteCustomerEvent)="deleteCustomer($event)">
 </app-customer-list-element>
 
 

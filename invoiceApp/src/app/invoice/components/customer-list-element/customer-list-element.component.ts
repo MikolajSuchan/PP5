@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Customer } from 'app/invoice/models/customer';
 
 @Component({
@@ -11,5 +11,13 @@ export class CustomerListElementComponent {
 
   @Input()
   customer: Customer=new Customer();
+
+  @Output()
+  deleteCustomerEvent=new EventEmitter<Customer>();
+
+  deleteCustomer(customer: Customer){
+    console.log('kasuje klienta o NIPie',this.customer.nip)
+    this.deleteCustomerEvent.emit(customer);
+  }
 
 }
