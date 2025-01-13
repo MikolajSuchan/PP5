@@ -1,10 +1,11 @@
 {{customer|json}}
-<form id="client-form"  class="row g-4" (ngSubmit)="saveData()">
+<form id="client-form"  class="row g-4" (ngSubmit)="onSubmitForm(customerForm)" #customerForm="ngForm"> 
     <input type="hidden" id="editIndex" value=""> <!-- Pole ukryte do przechowywania indeksu edytowanego klienta -->
     <!-- Nazwa firmy -->
     <div class="col-md-6">
         <label for="inputName" class="form-label">Nazwa Firmy</label>
-        <input type="text" class="form-control" id="inputName" required name="name" [(ngModel)]="customer.name">
+        <input type="text" class="form-control" id="inputName" required name="name" #name="ngModel" [(ngModel)]="customer.name">
+        <div class="invalid-feedback" [hidden]="name.invalid && customerForm.submitted" class="alert alert-danger">Pole Company name nie może być puste</div>
     </div>
     <!-- NIP -->
     <div class="col-md-6">
@@ -64,7 +65,7 @@
     </div>
     <!-- Przyciski -->
     <div class="col-12">
-        <button type="submit" class="btn btn-primary">Zapisz</button>
+        <button type="submit" class="btn btn-primary" [disabled]="customerForm.invalid">Zapisz</button>
         <button type="button" onclick="showList()" class="btn btn-secondary">Pokaż Listę</button>
     </div>
 
