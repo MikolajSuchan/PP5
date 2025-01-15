@@ -1,0 +1,33 @@
+{
+  "customers": [
+    {
+      "id": "f314",
+      "name": "12",
+      "nip": "",
+      "miasto": "",
+      "ulica": "",
+      "number": "",
+      "numberM": "",
+      "kod": "",
+      "uwagi": "",
+      "branza": "",
+      "check": true
+    },
+    {
+      "id": "147f",
+      "name": "123",
+      "nip": "",
+      "miasto": "",
+      "ulica": "",
+      "number": "",
+      "numberM": "",
+      "kod": "",
+      "uwagi": "",
+      "branza": "",
+      "check": true
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
