@@ -19,6 +19,11 @@ export class Customer{
         return `${this.name}${this.nip}`;
     }
 
+    deserialize(input:any){
+        Object.assign(this,input);
+        return this;
+    }
+
     
 
 }

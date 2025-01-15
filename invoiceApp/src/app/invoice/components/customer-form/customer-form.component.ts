@@ -26,8 +26,10 @@ constructor(
     console.log(form.valid);
     if(form.valid){
       console.log(this.customer);
-      this.customerService.addCustomer(this.customer);
-      this.router.navigate(['/invoice/customer-list'])
+      this.customerService.addCustomer(this.customer).subscribe((data:Customer)=>{
+        console.log(data);
+        alert('Zapisałem dane')
+      this.router.navigate(['/invoice/customer-list'])});
     }
     else{
       console.error('Popraw formę')

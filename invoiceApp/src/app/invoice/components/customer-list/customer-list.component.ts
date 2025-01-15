@@ -11,14 +11,14 @@ import { Customer } from 'app/invoice/models/customer';
 })
 export class CustomerListComponent implements OnInit,OnDestroy {
 
-  customerList: Customer[];
+  customerList: Customer[] = [];
 
   constructor(
     private customerService:CustomerService,
     private router:Router
   ){
-    console.log(this.customerService.getCustomer())
-    this.customerList=this.customerService.getCustomer();
+    console.log(this.customerService.getCustomers())
+    this.customerService.getCustomers();
   }
 
   redirectToForm(){
@@ -26,7 +26,7 @@ export class CustomerListComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(){
-    this.customerList
+    this.customerService.getCustomers().subscribe((data:Customer[])=>{console.log(data);this.customerList=data})
   }
 
   ngOnDestroy(){

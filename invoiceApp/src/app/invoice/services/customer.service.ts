@@ -1,22 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Customer } from '../models/customer';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CustomerService {
 
-  constructor() { }
+  constructor(
+    private httpClient:HttpClient
+  ) {}
 
 
   private customersList:Customer[]=[];
+  private baseUrl:string='http://localhost:3000/customers';
 
-  addCustomer(customer:Customer): void{
+  addCustomer(customer:Customer): Observable<any>{
     this.customersList.push(customer);
+
+    return this.httpClient.post<any>(this.baseUrl,customer);
   }
 
-  getCustomer():Customer[]{
-    return this.customersList;
+  getCustomers(): Observable<Customer[]> {
+    return this.httpClient
+      .get<Customer[]>(this.baseUrl)
+      .pipe(
+        map((customers: Customer[]) =>
+          customers.map((customer) => new Customer().deserialize(customer))
+        )
+      );
   }
-
 }
