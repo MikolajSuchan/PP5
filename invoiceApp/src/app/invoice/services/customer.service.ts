@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Customer } from '../models/customer';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { environment } from 'environments/environment.development';
 
 @Injectable()
 export class CustomerService {
@@ -12,7 +13,7 @@ export class CustomerService {
 
 
   private customersList:Customer[]=[];
-  private baseUrl:string='http://localhost:3000/customers';
+  private baseUrl:string=environment.apiUrl+'customers';
 
   addCustomer(customer:Customer): Observable<any>{
     this.customersList.push(customer);
